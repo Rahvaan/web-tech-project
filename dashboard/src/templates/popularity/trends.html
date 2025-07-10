@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container">
+    <h1 class="mb-4">Trendy Popularności</h1>
+    <p class="lead">
+        Odkryj, jak zmieniała się popularność filmów na przestrzeni lat i poznaj trendy w różnych gatunkach.
+    </p>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Roczne Statystyki</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Rok</th>
+                                    <th>Łączna Liczba Widzów</th>
+                                    <th>Łączna Liczba Odtworzeń</th>
+                                    <th>Średnie Zaangażowanie</th>
+                                    <th>Średnia Ocena</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stat in yearly_stats.itertuples() %}
+                                <tr>
+                                    <td>{{ stat.year }}</td>
+                                    <td>{{ "{:,}".format(stat.watchers) }}</td>
+                                    <td>{{ "{:,}".format(stat.plays) }}</td>
+                                    <td>{{ "%.2f"|format(stat.engagement_score) }}</td>
+                                    <td>{{ "%.2f"|format(stat.rating) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Popularność Gatunków</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Gatunek</th>
+                                    <th>Łączna Liczba Widzów</th>
+                                    <th>Średnie Zaangażowanie</th>
+                                    <th>Liczba Filmów</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stat in genre_popularity.itertuples() %}
+                                <tr>
+                                    <td>{{ stat.genre }}</td>
+                                    <td>{{ "{:,}".format(stat.total_watchers) }}</td>
+                                    <td>{{ "%.2f"|format(stat.avg_engagement) }}</td>
+                                    <td>{{ stat.movie_count }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

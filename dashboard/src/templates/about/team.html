@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container">
+    <h1 class="mb-4">Nasz Zespół</h1>
+
+    <div class="row">
+        {% for member in team_members %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <img src="{{ url_for('static', filename=member.image) }}"
+                             alt="{{ member.name }}"
+                             class="rounded-circle"
+                             style="width: 150px; height: 150px; object-fit: cover;">
+                    </div>
+                    <h5 class="card-title">{{ member.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ member.role }}</h6>
+                    <p class="card-text">{{ member.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="mt-5">
+        <h2>O Zespole</h2>
+        <p>
+            Zespół powstał w ramach realizacji projektu z przedmiotu Technologie Webowe.
+            Nasz zespół składa się ze studentów Politechniki Wrocławskiej, którzy
+            połączyli swoje umiejętności w zakresie programowania, analizy danych
+            i projektowania interfejsów użytkownika.
+        </p>
+        <p>
+            W trakcie realizacji projektu skupiliśmy się na stworzeniu estetycznego
+            i funkcjonalnego dashboardu, umożliwiającego analizę trendów w popularności
+            filmów.
+        </p>
+        <div class="mt-4">
+            <a href="{{ url_for('about.purpose') }}" class="btn btn-primary">
+                Wróć do Strony Głównej
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

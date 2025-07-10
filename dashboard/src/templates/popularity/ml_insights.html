@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container">
+    <h1 class="mb-4">Wnioski z użyciem uczenia maszynowego</h1>
+    <p class="lead">
+        Odkryj wpływ słów kluczowych na sukces filmów,
+        wykorzystując techniki uczenia maszynowego.
+    </p>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Analiza Wpływu Słów Kluczowych</h5>
+                    <p class="text-muted">
+                        Wykres pokazuje, jak różne słowa kluczowe wpływają na oglądalność i oceny filmów.
+                        Oś X pokazuje wpływ na liczbę widzów, a oś Y wpływ na oceny.
+                        Kolor reprezentuje częstotliwość występowania słowa kluczowego.
+                        Do stworzenia wykresu użyto prostej regresji liniowej.
+                    </p>
+                    <div id="impact-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    
+                    <h5 class="card-title">Interpretacja Wyników</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <strong>Wpływ na Oglądalność:</strong>
+                            <p>
+                                Wartości dodatnie wskazują, że słowo kluczowe jest związane z większą liczbą widzów.
+                                Wartości ujemne sugerują mniejszą popularność. Skala jest znormalizowana, gdzie 0 
+                                oznacza średni wpływ, a wartości +/-1 oznaczają odchylenie standardowe od średniej.
+                            </p>
+                        </li>
+                        <li class="mb-3">
+                            <strong>Wpływ na Oceny:</strong>
+                            <p>
+                                Wartości dodatnie oznaczają, że filmy z tym słowem kluczowym otrzymują zwykle wyższe oceny.
+                                Wartości ujemne wskazują na tendencję do niższych ocen. Podobnie jak w przypadku oglądalności,
+                                skala jest znormalizowana.
+                            </p>
+                        </li>
+                        <li>
+                            <strong>Częstotliwość:</strong>
+                            <p>
+                                Intensywność koloru pokazuje, jak często dane słowo kluczowe występuje w bazie filmów.
+                                Jaśniejsze kolory oznaczają częstsze występowanie, co może wskazywać na większą 
+                                wiarygodność oszacowanego wpływu.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        // Konfiguracja dla Vega-Embed
+        const vegaConfig = {
+            actions: false,  // Ukryj menu
+            renderer: 'canvas'
+        };
+        
+        // Wykres wpływu
+        vegaEmbed(
+            '#impact-chart',
+            {{ impact_chart_spec | tojson | safe }},
+            vegaConfig
+        ).catch(console.error);
+    </script>
+{% endblock %} 

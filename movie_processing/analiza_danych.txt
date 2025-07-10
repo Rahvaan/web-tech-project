@@ -1,0 +1,72 @@
+Analiza Danych Filmowych - Proces i Metodologia
+===========================================
+
+1. Wczytywanie Danych
+-------------------
+- Program wczytuje dane filmowe z plików JSON znajdujących się w katalogu data/movies
+- Każdy plik zawiera szczegółowe informacje o pojedynczym filmie, w tym oceny, statystyki i metadane
+
+2. Przetwarzanie Danych
+---------------------
+a) Obliczanie spójności ocen:
+   - Analiza rozkładu ocen dla każdego filmu
+   - Obliczanie ważonego odchylenia standardowego ocen
+   - Im niższa wartość, tym bardziej spójne są oceny filmu
+
+b) Obliczanie wskaźnika zaangażowania:
+   - Uwzględnia różne metryki aktywności użytkowników:
+     * Liczba oglądających (30% wagi)
+     * Liczba odtworzeń (20% wagi)
+     * Liczba kolekcjonerów (15% wagi)
+     * Liczba komentarzy (15% wagi)
+     * Liczba list (10% wagi)
+     * Liczba głosów (10% wagi)
+
+c) Analiza sentymentu - feature nie zaimplementowany
+   - Obliczanie średniego sentymentu słów kluczowych filmu
+   - Wykorzystanie biblioteki TextBlob do analizy wydźwięku
+
+3. Analizy Szczegółowe
+--------------------
+a) Analiza spójności ocen:
+   - Identyfikacja filmów z najbardziej i najmniej spójnymi ocenami
+   - Badanie korelacji między spójnością ocen a liczbą głosów
+   - Analiza zależności między oceną a jej spójnością
+
+b) Wpływ gatunków:
+   - Obliczanie średnich ocen dla każdego gatunku
+   - Analiza spójności ocen w obrębie gatunków
+   - Badanie liczby filmów w każdym gatunku
+
+c) Indeks sukcesu:
+   - Tworzenie złożonego wskaźnika uwzględniającego:
+     * Średnią ocenę
+     * Liczbę głosów
+     * Wskaźnik zaangażowania
+     * Liczbę dostępnych tłumaczeń
+   - Normalizacja składników przy użyciu StandardScaler
+   - Ważenie poszczególnych komponentów
+
+4. Wizualizacje
+-------------
+a) Analiza Ocen:
+   - rating_consistency.png: Wykres rozrzutu (oceny vs spójność)
+   - timeline_analysis.png: Wzorce czasowe ocen
+   - genre_ratings.png: Wykresy pudełkowe gatunków
+
+
+b) Analiza Czasowa (timeline_analysis.png):
+   - Panel Górny:
+     * Średnie oceny filmów w czasie (2010-2023)
+     * Liczba filmów w danym roku
+     * Trendy jakości i ilości produkcji
+   - Panel Dolny:
+     * Trendy zaangażowania widzów
+     * Zasięg globalny (dostępność tłumaczeń)
+     * Ewolucja wskaźników branży filmowej
+
+5. Zapisywanie Wyników
+--------------------
+- Generowanie szczegółowego raportu w formacie JSON
+- Zapisywanie wykresów w katalogu 'plots'
+- Wyświetlanie najważniejszych wniosków w konsoli

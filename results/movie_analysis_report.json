@@ -1,0 +1,250 @@
+{
+  "basic_stats": {
+    "total_movies": 12000,
+    "avg_rating": 6.677038045833333,
+    "avg_consistency": 1.8654143304180821,
+    "avg_engagement": 0.3884223775615257
+  },
+  "rating_consistency": {
+    "most_consistent": [
+      {
+        "title": "Cunk on Christmas",
+        "rating": 7.76724,
+        "rating_std": 1.0366852695176016
+      },
+      {
+        "title": "Thadam",
+        "rating": 7.70635,
+        "rating_std": 1.0769405542650137
+      },
+      {
+        "title": "In the Absence",
+        "rating": 8.00917,
+        "rating_std": 1.0878428519558219
+      },
+      {
+        "title": "The Marriage Escape",
+        "rating": 7.70588,
+        "rating_std": 1.1122159059547851
+      },
+      {
+        "title": "Microhabitat",
+        "rating": 7.49206,
+        "rating_std": 1.1180058192397606
+      }
+    ],
+    "most_inconsistent": [
+      {
+        "title": "Justin Bieber's Believe",
+        "rating": 5.70199,
+        "rating_std": 3.572882973392349
+      },
+      {
+        "title": "Something in the Way",
+        "rating": 7.02817,
+        "rating_std": 3.4903159023497823
+      },
+      {
+        "title": "Fateful Findings",
+        "rating": 5.27184,
+        "rating_std": 3.4660466127163283
+      },
+      {
+        "title": "2016: Obama's America",
+        "rating": 6.46212,
+        "rating_std": 3.387600614698113
+      },
+      {
+        "title": "Russian Mom",
+        "rating": 7.00985,
+        "rating_std": 3.365999434776214
+      }
+    ],
+    "correlation_with_votes": -0.15262401200560252,
+    "correlation_with_rating": -0.5578872360502795
+  },
+  "genre_impact": {
+    "adventure": {
+      "avg_rating": 6.734983062645012,
+      "avg_consistency": 1.8929704424213052,
+      "movie_count": 1293
+    },
+    "war": {
+      "avg_rating": 6.951023142857143,
+      "avg_consistency": 1.800762836180286,
+      "movie_count": 315
+    },
+    "comedy": {
+      "avg_rating": 6.657485065070276,
+      "avg_consistency": 1.8717741912151928,
+      "movie_count": 3842
+    },
+    "drama": {
+      "avg_rating": 6.820211206374823,
+      "avg_consistency": 1.830078803829062,
+      "movie_count": 4957
+    },
+    "fantasy": {
+      "avg_rating": 6.698962029411764,
+      "avg_consistency": 1.906326575747923,
+      "movie_count": 1020
+    },
+    "science-fiction": {
+      "avg_rating": 6.404501451469279,
+      "avg_consistency": 1.9139545764855201,
+      "movie_count": 1123
+    },
+    "anime": {
+      "avg_rating": 7.308776431095408,
+      "avg_consistency": 1.7012525917986132,
+      "movie_count": 283
+    },
+    "action": {
+      "avg_rating": 6.548087164115645,
+      "avg_consistency": 1.9032313384368655,
+      "movie_count": 2352
+    },
+    "thriller": {
+      "avg_rating": 6.343575695726496,
+      "avg_consistency": 1.8951132155126038,
+      "movie_count": 2925
+    },
+    "romance": {
+      "avg_rating": 6.805572264689105,
+      "avg_consistency": 1.871668036797459,
+      "movie_count": 1753
+    },
+    "holiday": {
+      "avg_rating": 6.740996521739131,
+      "avg_consistency": 1.886856535923248,
+      "movie_count": 207
+    },
+    "crime": {
+      "avg_rating": 6.676723103448276,
+      "avg_consistency": 1.809395683942727,
+      "movie_count": 1450
+    },
+    "documentary": {
+      "avg_rating": 7.405140991561182,
+      "avg_consistency": 1.702889473883858,
+      "movie_count": 948
+    },
+    "horror": {
+      "avg_rating": 5.965131284403669,
+      "avg_consistency": 1.9867788782915285,
+      "movie_count": 1744
+    },
+    "mystery": {
+      "avg_rating": 6.473347547738694,
+      "avg_consistency": 1.8471114090731318,
+      "movie_count": 995
+    },
+    "history": {
+      "avg_rating": 7.105859626998224,
+      "avg_consistency": 1.7088014191158594,
+      "movie_count": 563
+    },
+    "family": {
+      "avg_rating": 6.900879257518797,
+      "avg_consistency": 1.9436760338583219,
+      "movie_count": 1064
+    },
+    "musical": {
+      "avg_rating": 6.90757052631579,
+      "avg_consistency": 2.0090009893614993,
+      "movie_count": 152
+    },
+    "superhero": {
+      "avg_rating": 6.925426901408452,
+      "avg_consistency": 1.8104288871155054,
+      "movie_count": 213
+    },
+    "music": {
+      "avg_rating": 7.263385608591887,
+      "avg_consistency": 1.8788850162096649,
+      "movie_count": 419
+    },
+    "animation": {
+      "avg_rating": 7.044759471649485,
+      "avg_consistency": 1.8928925984572573,
+      "movie_count": 776
+    },
+    "western": {
+      "avg_rating": 6.629430458715595,
+      "avg_consistency": 1.9022427196783789,
+      "movie_count": 109
+    },
+    "suspense": {
+      "avg_rating": 6.007258571428572,
+      "avg_consistency": 1.9839408768787135,
+      "movie_count": 14
+    },
+    "donghua": {
+      "avg_rating": 7.013752800000001,
+      "avg_consistency": 1.8290004552202683,
+      "movie_count": 25
+    },
+    "short": {
+      "avg_rating": 7.114664285714285,
+      "avg_consistency": 1.7490230571494796,
+      "movie_count": 14
+    },
+    "game-show": {
+      "avg_rating": 6.5477799999999995,
+      "avg_consistency": 1.4454667968630444,
+      "movie_count": 2
+    }
+  },
+  "top_movies": [
+    {
+      "title": "Deadpool",
+      "year": 2016,
+      "success_index": 5.775263147753326
+    },
+    {
+      "title": "Guardians of the Galaxy",
+      "year": 2014,
+      "success_index": 5.2357838089996
+    },
+    {
+      "title": "Interstellar",
+      "year": 2014,
+      "success_index": 4.6373450662743965
+    },
+    {
+      "title": "Inception",
+      "year": 2010,
+      "success_index": 4.46795524783162
+    },
+    {
+      "title": "The Avengers",
+      "year": 2012,
+      "success_index": 3.902257821326258
+    },
+    {
+      "title": "Avengers: Infinity War",
+      "year": 2018,
+      "success_index": 3.7537901635899305
+    },
+    {
+      "title": "Doctor Strange",
+      "year": 2016,
+      "success_index": 3.74312957340235
+    },
+    {
+      "title": "Logan",
+      "year": 2017,
+      "success_index": 3.7025567868434415
+    },
+    {
+      "title": "The Martian",
+      "year": 2015,
+      "success_index": 3.511085479146358
+    },
+    {
+      "title": "Avengers: Endgame",
+      "year": 2019,
+      "success_index": 3.489458006413601
+    }
+  ]
+}

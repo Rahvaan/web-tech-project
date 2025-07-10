@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container">
+    <h1 class="mb-4">Technologie i Źródła Danych</h1>
+
+    <div class="cards-wrapper">
+        <div class="row row-cols-1 row-cols-md-3">
+            {% for source_id, source in data_sources.items() %}
+            <div class="col tech-card-col">
+                <div class="card equal-height-card">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ source.name }}</h5>
+                        <p class="card-text" style="min-height: 100px;">{{ source.description }}</p>
+                        <div class="tech-section">
+                            <h6 class="mb-3">Wykorzystane Technologie:</h6>
+                            <ul class="list-unstyled mb-0">
+                                {% for metric in source.metrics %}
+                                <li>
+                                    <span class="badge bg-primary me-2">✓</span>
+                                    {{ metric }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-12 tech-card-col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Źródła Danych</h5>
+                        
+                        <div class="data-source-section mb-4">
+                            <h6 class="text-primary mb-3">Główne Źródła API</h6>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <strong class="d-block mb-2">🎬 Trakt.tv API</strong>
+                                    <p class="text-muted mb-0">
+                                        Główne źródło danych o filmach, dostarczające szczegółowe informacje o:
+                                        popularności, rozkładzie ocen i statystykach oglądania. Dodatkowo zapewnia
+                                        identyfikatory IMDB dla każdego filmu.
+                                    </p>
+                                </li>
+                                <li class="mb-3">
+                                    <strong class="d-block mb-2">🎥 TMDB API</strong>
+                                    <p class="text-muted mb-0">
+                                        Uzupełniające źródło danych, wzbogacające informacje o filmach o słowa
+                                        kluczowe i dodatkowe metadane.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="data-stats-section">
+                            <h6 class="text-primary mb-3">Zakres Danych</h6>
+                            <p class="text-muted mb-0">
+                                Nasza baza obejmuje ponad 10 000 najpopularniejszych filmów z lat 2010-2023,
+                                zapewniając kompleksowy wgląd w trendy i preferencje widzów na przestrzeni ostatniej dekady.
+                            </p>
+                        </div>
+
+                        <div class="mt-4">
+                            <a href="{{ url_for('about.purpose') }}" class="btn btn-primary">
+                                Wróć do Strony Głównej
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .cards-wrapper {
+        margin: -1.5rem;
+        padding: 0 1.5rem;
+    }
+
+    .row-cols-md-3 {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .tech-card-col {
+        display: flex;
+        padding: 1.5rem;
+    }
+
+    .row-cols-md-3 > .tech-card-col {
+        flex: 0 0 33.333333%;
+    }
+    
+    .equal-height-card {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .card-body {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .tech-section {
+        padding-top: 1rem;
+    }
+    
+    .tech-section h6 {
+        font-size: 1.4rem;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+    }
+    
+    .tech-section ul li {
+        margin-bottom: 0.8rem;
+        font-size: 1.4rem;
+    }
+    
+    .tech-section ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    .data-source-section strong,
+    .data-stats-section strong {
+        font-size: 1.4rem;
+        color: var(--text-primary);
+    }
+
+    .text-muted {
+        font-size: 1.4rem;
+        line-height: 1.6;
+    }
+
+    h6.text-primary {
+        font-size: 1.5rem;
+        color: var(--text-primary) !important;
+        opacity: 0.9;
+    }
+</style>
+{% endblock %} 

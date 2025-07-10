@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container">
+    <h1 class="mb-4">Tabela Popularnych Filmów</h1>
+    <p class="lead">
+        Przeglądaj popularne filmy z bazy danych Trakt. Dataset zawiera ponad 10000 najpopularniejszych filmów z lat 2010-2023.
+        Użyj wyszukiwarki, aby znaleźć konkretne tytuły.
+    </p>
+    
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="movies-table">
+                    <thead>
+                        <tr>
+                            <th>Tytuł</th>
+                            <th>Rok</th>
+                            <th>Gatunki</th>
+                            <th>Liczba Widzów</th>
+                            <th>Ocena</th>
+                            <th>Liczba Głosów</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for movie in movies %}
+                        <tr>
+                            <td>{{ movie.title }}</td>
+                            <td>{{ movie.year }}</td>
+                            <td>{{ movie.genres|join(', ') if movie.genres else '-' }}</td>
+                            <td>{{ "{:,.0f}".format(movie.watchers) if movie.watchers else '-' }}</td>
+                            <td>{{ "%.2f"|format(movie.rating) if movie.rating else '-' }}</td>
+                            <td>{{ "{:,.0f}".format(movie.votes) if movie.votes else '-' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#movies-table').DataTable({
+                language: {
+                    search: "Szukaj:",
+                    lengthMenu: "Pokaż _MENU_ wpisów",
+                    info: "Wyświetlanie od _START_ do _END_ z _TOTAL_ wpisów",
+                    infoEmpty: "Wyświetlanie od 0 do 0 z 0 wpisów",
+                    infoFiltered: "(filtrowane z _MAX_ wszystkich wpisów)",
+                    zeroRecords: "Nie znaleziono pasujących wyników",
+                    paginate: {
+                        first: "Pierwsza",
+                        last: "Ostatnia",
+                        next: "Następna",
+                        previous: "Poprzednia"
+                    }
+                },
+                pageLength: 25,
+                order: [[3, 'desc']]  // Sort by watchers column by default
+            });
+        });
+    </script>
+{% endblock %} 

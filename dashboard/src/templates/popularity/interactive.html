@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<style>
+    /* Style for the year selector */
+    .vega-bind select {
+        background-color: #2F3B4B !important;
+        color: white !important;
+        padding: 8px !important;
+        margin-left: 20px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 6px !important;
+        font-size: 1.4rem !important;
+    }
+    
+    .vega-bind select:focus {
+        outline: none !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+    
+    .vega-bind select option {
+        background-color: #2F3B4B !important;
+        color: white !important;
+        padding: 4px !important;
+    }
+    
+    /* Style for the binding label */
+    .vega-bind-name {
+        color: white !important;
+        font-size: 1.4rem !important;
+        margin-right: 8px !important;
+    }
+</style>
+
+<div class="container">
+    <h1 class="mb-4">Analiza Interaktywna</h1>
+    <p class="lead">
+        Odkryj interaktywne wizualizacje metryk popularności filmów.
+    </p>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Popularność vs. Ocena Filmów</h5>
+                    <p class="text-muted">
+                        Rozmiar kropki reprezentuje liczbę głosów. Najedź kursorem na punkty, aby zobaczyć szczegóły.
+                        Użyj selektora roku do filtrowania według roku. Kliknij na punkty, aby je podświetlić,
+                        kliknij poza punktami, aby wyczyścić zaznaczenie.
+                    </p>
+                    <div id="scatter-plot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Oś Czasu Popularności Gatunków</h5>
+                    <p class="text-muted">
+                        Kliknij na nazwy gatunków w legendzie, aby je pokazać/ukryć.
+                    </p>
+                    <div id="timeline-plot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        // Konfiguracja dla Vega-Embed
+        const vegaConfig = {
+            actions: false,  // Ukryj menu
+            renderer: 'canvas'
+        };
+        
+        // Wykres rozproszenia
+        vegaEmbed(
+            '#scatter-plot',
+            {{ scatter_spec | tojson | safe }},
+            vegaConfig
+        ).catch(console.error);
+        
+        // Wykres osi czasu
+        vegaEmbed(
+            '#timeline-plot',
+            {{ timeline_spec | tojson | safe }},
+            vegaConfig
+        ).catch(console.error);
+    </script>
+{% endblock %} 

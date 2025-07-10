@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container">
+    <h1 class="mb-4">Analiza Słów Kluczowych</h1>
+    <p class="lead">
+        Odkryj, jak słowa kluczowe wpływają na popularność filmów i ich oceny.
+        Analizuj trendy i korelacje między gatunkami a słowami kluczowymi.
+    </p>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Najczęstsze Słowa Kluczowe</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Słowo Kluczowe</th>
+                                    <th>Liczba Filmów</th>
+                                    <th>Łączna Liczba Widzów</th>
+                                    <th>Średnia Ocena</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for keyword in top_keywords %}
+                                <tr>
+                                    <td>{{ keyword.keyword }}</td>
+                                    <td>{{ keyword.movie_count }}</td>
+                                    <td>{{ "{:,.0f}".format(keyword.total_watchers) }}</td>
+                                    <td>{{ "%.2f"|format(keyword.avg_rating) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Roczne Trendy Słów Kluczowych</h5>
+                    <p class="text-muted">
+                        Kliknij na słowa kluczowe w legendzie, aby pokazać/ukryć ich trendy.
+                        Rozmiar punktów reprezentuje liczbę filmów.
+                    </p>
+                    <div id="yearly-trends"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Korelacje Gatunków i Słów Kluczowych</h5>
+                    <p class="text-muted">
+                        Mapa cieplna pokazująca, jak często słowa kluczowe występują w różnych gatunkach.
+                        Najedź kursorem na komórki, aby zobaczyć dokładne wartości.
+                    </p>
+                    <div id="genre-correlations"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Wskaźnik Sukcesu Słów Kluczowych</h5>
+                    <p class="text-muted">
+                        Wykres pokazuje, które słowa kluczowe są związane z wysoką oglądalnością i ocenami.
+                        Rozmiar punktów reprezentuje liczbę filmów, a kolor - średni poziom zaangażowania.
+                    </p>
+                    <div id="success-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        // Konfiguracja dla Vega-Embed
+        const vegaConfig = {
+            actions: false,  // Ukryj menu
+            renderer: 'canvas'
+        };
+        
+        // Wykres trendów rocznych
+        vegaEmbed(
+            '#yearly-trends',
+            {{ yearly_trends_spec | tojson | safe }},
+            vegaConfig
+        ).catch(console.error);
+        
+        // Mapa cieplna korelacji
+        vegaEmbed(
+            '#genre-correlations',
+            {{ genre_correlations_spec | tojson | safe }},
+            vegaConfig
+        ).catch(console.error);
+        
+        // Wykres sukcesu
+        vegaEmbed(
+            '#success-chart',
+            {{ success_chart_spec | tojson | safe }},
+            vegaConfig
+        ).catch(console.error);
+    </script>
+{% endblock %} 

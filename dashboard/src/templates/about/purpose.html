@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container">
+    <h1 class="mb-4">Analiza Popularności Filmów</h1>
+    <p class="lead mb-5">
+        Projekt ma na celu zbadanie czynników wpływających na popularność
+        i sukces filmów, wykorzystując techniki analizy danych oraz
+        interaktywne wizualizacje. Projekt korzysta z bazy ponad 10 000
+        popularnych filmów, które zostały ocenione przez użytkowników.
+    </p>
+
+    <div class="cards-wrapper">
+        <div class="row row-cols-1 row-cols-md-2">
+            {% for goal in analysis_goals %}
+            <div class="col goal-card-col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="display-4 me-3">{{ goal.icon }}</span>
+                            <h5 class="card-title mb-0">{{ goal.title }}</h5>
+                        </div>
+                        <p class="card-text">{{ goal.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-12 goal-card-col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">O Projekcie</h5>
+                        <p>
+                            Dashboard oferuje wgląd w statystyki popularnych filmów
+                            z lat 2010-2023. Celem jest zbadanie cech posiadanych przez
+                            popularne filmy nagrane na przestrzeni lat.
+                        </p>
+                        <p>
+                            Dzięki interaktywnym wizualizacjom i szczegółowym analizom, możesz:
+                        </p>
+                        <ul>
+                            <li>Odkrywać trendy popularności filmów na przestrzeni lat</li>
+                            <li>Analizować wpływ różnych gatunków na sukces filmu</li>
+                            <li>Badać związki między słowami kluczowymi a popularnością</li>
+                            <li>Poznawać informacje na temat twoich ulubionych popularnych filmów</li>
+                        </ul>
+                        <div class="mt-4">
+                            <a href="{{ url_for('about.data') }}" class="btn btn-primary me-2">
+                                Poznaj Nasze Źródła Danych
+                            </a>
+                            <a href="{{ url_for('about.team') }}" class="btn btn-outline-primary">
+                                Poznaj Nasz Zespół
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .cards-wrapper {
+        margin: -1.5rem;
+        padding: 0 1.5rem;
+    }
+
+    .row-cols-md-2 {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .goal-card-col {
+        display: flex;
+        padding: 1.5rem;
+    }
+
+    .row-cols-md-2 > .goal-card-col {
+        flex: 0 0 50%;
+    }
+    
+    .card {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .card-body {
+        padding: 2rem;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+</style>
+{% endblock %} 
